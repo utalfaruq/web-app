@@ -43,6 +43,7 @@ deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'h
 }
 }
 
+    }
 post {
         success {
             slackSend channel: 'jomacs-practice', color: 'good', message: "Build successful: ${currentBuild.fullDisplayName}"
@@ -56,5 +57,5 @@ post {
 }
 
 
-    }
+    
 }
