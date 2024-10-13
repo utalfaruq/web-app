@@ -31,19 +31,14 @@ pipeline{
             }
         }
 
-        stage("Quality Gate") {
+ stage("Quality Gate") {
     steps {
-        timeout(time: 5, unit: 'MINUTES') {  // Increased timeout to 5 minutes for SonarQube analysis
+        timeout(time: 1, unit: 'MINUTES') {  // Increased timeout to 5 minutes for SonarQube analysis
             waitForQualityGate abortPipeline: true
         }
     }
 }
-
-stage('nexus uploads'){
-            steps{
-               nexusArtifactUploader artifacts: [[artifactId: 'maven-web-application', classifier: '', file: '/var/lib/jenkins/workspace/jomacs-webapp-jenkinsfile/target/web-app.war', type: 'war']], credentialsId: 'nexus-credentials', groupId: 'com.mt', nexusUrl: '44.202.2.109:8081/repository/jomacs-webapp', nexusVersion: 'nexus3', protocol: 'http', repository: 'jomacs-webapp', version: '3.8.1-snapshot'
-            }
-        }
+       
 
     }
 }
