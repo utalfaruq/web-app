@@ -1,5 +1,5 @@
 pipeline{
-    any
+    agent any
 
     toos {
         maven 'maven'
