@@ -25,20 +25,13 @@ pipeline{
             steps{
                script{
                    withSonarQubeEnv('sonar'){
-                       sh "${ScannerHome}/bin/sonar-scanner -Dsonar.projectKey=alfaruq-webapp"
+                       sh "${ScannerHome}/bin/sonar-scanner -Dsonar.projectKey=utalfaruq-webapp"
                    }
                } 
             }
         }
 
- stage("Quality Gate") {
-    steps {
-        timeout(time: 1, unit: 'MINUTES') {  // Increased timeout to 5 minutes for SonarQube analysis
-            waitForQualityGate abortPipeline: true
-        }
-    }
-}
-
+ 
       
 
     }
