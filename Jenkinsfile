@@ -17,5 +17,19 @@ pipeline{
                 sh 'mvn clean package'
             }
         }
+
+        stage('code analysis'){
+            environment{
+               ScannerHome = tool 'sonar' 
+            }
+            steps{
+               script{
+                   withSonarQubeEnv('sonar'){
+                       sh "${ScannerHome}/bin/sonar-scanner -Dsonar.projectKey=alfaruq-webapp"
+                   }
+               } 
+            }
+        }
+
     }
 }
