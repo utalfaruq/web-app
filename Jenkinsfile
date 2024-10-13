@@ -37,7 +37,11 @@ stage('nexus uploads'){
             }
         }
 
-
+stage('prod deployment'){
+    steps{
+deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://3.90.230.83:8080/')], contextPath: null, war: 'target/web-app.war'
+}
+}
 
     }
 }
